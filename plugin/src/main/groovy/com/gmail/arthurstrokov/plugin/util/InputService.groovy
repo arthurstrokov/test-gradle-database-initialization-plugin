@@ -2,7 +2,7 @@ package com.gmail.arthurstrokov.plugin.util
 
 class InputService {
 
-    static def readFromFile(String fileName) {
+    static List<String> readFromFile(String fileName) {
         List<String> list = new ArrayList<>();
         String sql = "";
         try {

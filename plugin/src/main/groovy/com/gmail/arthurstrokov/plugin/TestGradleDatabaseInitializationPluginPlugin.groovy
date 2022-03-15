@@ -9,8 +9,7 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 
 /**
- * A simple 'hello world' plugin.
- */
+ * A simple 'hello world' plugin.*/
 class TestGradleDatabaseInitializationPluginPlugin implements Plugin<Project> {
     void apply(Project project) {
         // Register a task
@@ -20,10 +19,10 @@ class TestGradleDatabaseInitializationPluginPlugin implements Plugin<Project> {
             }
         }
         project.tasks.register("databaseCreateTable", DatabaseCreateTable) {
-            setGroup("test")
+            setGroup("test database")
         }
         project.tasks.register("databaseInsertData", DatabaseInsertData) {
-            setGroup("test")
+            setGroup("test database")
         }
     }
 }

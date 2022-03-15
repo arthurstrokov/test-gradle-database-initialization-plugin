@@ -7,11 +7,6 @@
  */
 
 plugins {
-    id 'java'
-
-    id 'org.springframework.boot' version '2.6.4'
-    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-
     // Apply the Java Gradle plugin development plugin to add support for developing Gradle plugins
     id 'java-gradle-plugin'
 
@@ -36,11 +31,7 @@ repositories {
 dependencies {
     // Use the awesome Spock testing and specification framework
     testImplementation 'org.spockframework:spock-core:2.0-groovy-3.0'
-
-    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc:2.6.4'
-    runtimeOnly 'org.springframework.boot:spring-boot-devtools:2.6.4'
     runtimeOnly 'org.postgresql:postgresql:42.3.3'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.6.4'
 }
 
 gradlePlugin {
@@ -78,12 +69,4 @@ tasks.named('check') {
 tasks.named('test') {
     // Use JUnit Jupiter for unit tests.
     useJUnitPlatform()
-}
-
-bootJar {
-    enabled = false
-}
-
-jar {
-    enabled = true
 }
