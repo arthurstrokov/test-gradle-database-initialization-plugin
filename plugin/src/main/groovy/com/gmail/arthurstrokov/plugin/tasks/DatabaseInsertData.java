@@ -15,9 +15,7 @@ public class DatabaseInsertData extends DefaultTask {
         List<String> data = InputService.readFromFile("data.sql");
 
         Class.forName("org.postgresql.Driver"); // It doesn't work without it.
-        try (Connection conn = DriverManager.getConnection(
-                SqlService.DATABASE_URL, SqlService.USER, SqlService.PASS
-        );
+        try (Connection conn = DriverManager.getConnection(SqlService.DATABASE_URL, SqlService.USER, SqlService.PASS);
              Statement statement = conn.createStatement()
         ) {
             System.out.println(("Connected to the database!"));
