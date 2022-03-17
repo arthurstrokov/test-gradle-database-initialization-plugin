@@ -6,12 +6,9 @@ import org.gradle.api.Project
 import org.gradle.testfixtures.ProjectBuilder
 import org.junit.jupiter.api.Test
 
-import java.sql.Connection
-import java.sql.DriverManager
-import java.sql.SQLException
+import java.sql.*
 
-import static org.junit.jupiter.api.Assertions.assertFalse
-import static org.junit.jupiter.api.Assertions.assertTrue
+import static org.junit.jupiter.api.Assertions.*
 
 class TestDatabaseInitializationPlugin {
 
@@ -27,10 +24,27 @@ class TestDatabaseInitializationPlugin {
     }
 
     @Test
-    void testConnection() throws ClassNotFoundException, SQLException {
+    void testDatabase() throws ClassNotFoundException, SQLException {
+        String sqlDropTable = "DROP TABLE IF EXISTS TEST";
+        String sqlCreateTable = "CREATE TABLE IF NOT EXISTS TEST( ID serial, NAME varchar(100) NOT NULL, PRIMARY KEY (NAME))";
+        String sqlInsertData = "INSERT INTO TEST(NAME) VALUES ('test') ON CONFLICT (NAME) DO NOTHING";
+        String sqlSelect = "SELECT * FROM TEST";
+
         Class.forName("org.postgresql.Driver");
         try (Connection connection = DriverManager.getConnection(SqlService.DATABASE_URL, "root", "root")) {
+            Statement statement = connection.createStatement();
             assertTrue(isDatabaseConnected(connection));
+            statement.execute(sqlDropTable);
+            statement.execute(sqlCreateTable);
+            statement.execute(sqlInsertData);
+            ResultSet resultSet = statement.executeQuery(sqlSelect);
+            List<String> list = new ArrayList<>();
+            while (resultSet.next()) {
+                list.add(resultSet.getString("NAME"));
+            }
+            assertEquals("test", list.get(0));
+            assertNotEquals("tes1t", list.get(0));
+            statement.execute(sqlDropTable);
             connection.close();
             assertFalse(isDatabaseConnected(connection));
         }
