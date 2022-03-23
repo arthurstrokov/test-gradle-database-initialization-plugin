@@ -18,6 +18,8 @@ plugins {
 
     // Get plugin from mavenLocal()
     id 'com.gmail.arthurstrokov.plugin.testGradleDatabaseInitializationPlugin' version '0.0.1-SNAPSHOT'
+
+    id 'com.gmail.arthurstrokov.plugin.testGradleGitReleasePlugin' version '1.0'
 }
 
 group = 'com.gmail.arthurstrokov'
