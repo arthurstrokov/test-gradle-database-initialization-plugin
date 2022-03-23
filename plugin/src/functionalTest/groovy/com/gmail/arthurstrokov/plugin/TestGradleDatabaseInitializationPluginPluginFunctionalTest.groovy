@@ -35,11 +35,11 @@ plugins {
         def runner = GradleRunner.create()
         runner.forwardOutput()
         runner.withPluginClasspath()
-        runner.withArguments("greeting")
+        runner.withArguments("testGradleDatabaseInitializationPluginGreeting")
         runner.withProjectDir(projectDir)
         def result = runner.build()
 
         then:
-        result.output.contains("Hello from plugin 'com.gmail.arthurstrokov.plugin.greeting'")
+        result.output.contains("Hello from plugin 'testGradleDatabaseInitializationPluginGreeting'")
     }
 }
