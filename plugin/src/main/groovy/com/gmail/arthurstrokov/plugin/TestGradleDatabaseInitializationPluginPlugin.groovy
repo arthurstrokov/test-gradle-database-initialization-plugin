@@ -10,9 +10,9 @@ class TestGradleDatabaseInitializationPluginPlugin implements Plugin<Project> {
 
     void apply(Project project) {
         // Register a task
-        project.tasks.register("greeting") {
+        project.tasks.register("testGradleDatabaseInitializationPlugin") {
             doLast {
-                println("Hello from plugin 'com.gmail.arthurstrokov.plugin.greeting'")
+                println("Hello from plugin 'testGradleDatabaseInitializationPlugin'")
             }
         }
         project.tasks.register("databaseCreateTable", DatabaseCreateTable) {

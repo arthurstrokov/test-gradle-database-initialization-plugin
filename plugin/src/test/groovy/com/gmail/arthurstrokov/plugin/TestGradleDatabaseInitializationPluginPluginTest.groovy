@@ -18,6 +18,6 @@ class TestGradleDatabaseInitializationPluginPluginTest extends Specification {
         project.plugins.apply("com.gmail.arthurstrokov.plugin.testGradleDatabaseInitializationPlugin")
 
         then:
-        project.tasks.findByName("greeting") != null
+        project.tasks.findByName("testGradleDatabaseInitializationPlugin") != null
     }
 }
